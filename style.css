@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+:root{
+    --main-color: #027581;
+    --color-dark: #1D2231;
+    --text-gray: #8390A2;
+}
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none; /*font chữ thường không có gì*/
+    list-style: none;
+    box-sizing: border-box; /*size từ border*/
+}
+#sidebar-toggle{ /*dòng 10*/
+    display: none;
+}
+.sidebar{ /*Thanh menu bên trái*/
+    height: 100%;
+    width: 240px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    background: var(--main-color);
+    color: #fff;
+    padding: 10px;
+    overflow-y: auto; /*trục dọc*/
+    transition: width 500ms;
+}
+.sidebar-header{ /*Cái liên kết và Easywire và cái dấu 3 ghạch*/
+    display: flex; /*sử dụng flexbox và nằm trên cùng 1 hàng*/
+    justify-content: space-between; /*đẩy sang 2 bên*/
+    align-items: center; /*căn giữa*/
+    height: 60px;
+    padding: 0rem 1rem;
+
+}
+.sidebar-menu{ /*8 Cái mục*/
+    padding: 1rem; /*vòng bao bên ngoài của cả 9 item*/
+}
+.sidebar li{
+    margin-bottom: 1.2rem; /*vòng bao bên ngoài của icon và chữ */
+}
+.sidebar a{
+    color: #fff;
+    font-size: 0.9rem;
+}
+.sidebar span:last-child{ /*Chữ easywrie*/
+    padding-left: 0.6rem;
+}
+/*51 đến 57 là kéo ra kéo vào*/
+#sidebar-toggle:checked ~ .sidebar{
+    width: 60px;
+}
+#sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span,
+#sidebar-toggle:checked ~ .sidebar li span:last-child {
+    display: none;
+}
+#sidebar-toggle:checked ~ .sidebar .sidebar-header,
+#sidebar-toggle:checked ~ .sidebar li {
+    display: flex;
+    justify-content: center;
+}
+#sidebar-toggle:checked ~ .main-content{ 
+    margin-left: 60px; /*phần main kéo theo*/
+}
+#sidebar-toggle:checked ~ .main-content header{
+    left: 60px;  /*Phần thanh tìm kiếm*/
+}
+.main-content{
+    position: relative;
+    margin-left: 240px; /*độ rộng thanh menu là 240px*/
+    transition: margin-left 500ms;
+}
+header{ /*kính tìm kiếm, textbox,chuông, tin nhắn*/
+    position: fixed;
+    top: 0;
+    left: 240px; /*độ rộng của menu*/
+    z-index: 100;
+    width: calc(100% - 240px);
+    background: #fff;
+    padding: 0rem 1rem;
+    height: 60px; /*chiều cao item là 60px*/
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    transition: left 500ms;
+}
+.search-wrapper{ /*Kính và ô tìm kiếm*/
+    display: flex;
+    align-items: center;
+}
+.search-wrapper input{ /*ô tìm kiếm*/
+    border: 0;
+    outline: 0;
+    padding: 1rem;
+    height: 38px;
+}
+.social-icons{ /*chuông và tin nhắn*/
+    display: flex; 
+    align-items: center;
+}
+.social-icons span, /*chuông*/
+.social-icons div{ /*tin nhắn*/
+    margin-left: 1.2rem;
+}
+.social-icons div{
+    height: 40px;
+    width: 40px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(Image1.jpg);
+    border-radius: 50%;
+}
+main{  /*Từ overview --> cái bảng*/
+    margin-top: 60px; /*cách cái header*/
+    background: #f1f5f9;
+    min-height: 90vh;
+    padding: 1rem 3rem;
+}
+.dash-title{
+    /*dòng Overiew*/
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+}
+.dash-cards{ /*3 ô trên*/
+    display: grid; /*hiển thị dạng lưới*/
+    grid-template-columns: repeat(3, 1fr); /*chia làm 3 và đều bằng 1 fr*/
+    grid-column-gap: 3rem; /*Mỗi 1 ô cách nhau 5rem*/ 
+}
+.card-single{ /*1 ô*/
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2); /*đổ bóng*/
+
+}
+.card-body{ /*icon briefcase, reload, check-box, chữ*/
+    padding: 1.3rem 1rem;
+    display: flex;
+    align-items: center;
+}
+.card-body span{ /*các icon không có chữ*/
+    font-size: 1.5rem;
+    color: #777;
+    padding-right: 1.2rem;
+}
+.card-body h5{
+    /*thẻ h5*/
+    color: var(--text-gray);
+    font-size: 1.4rem;
+}
+.card-body h4{
+    color: var(--color-dark);
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+.card-footer{ /*dòng view*/
+    padding: .2rem 1rem;
+    background: #f7f9fa;
+}
+.card-footer a{
+    /*Chữ view*/
+    color: var(--main-color);
+}
+.recent{
+    /*bên dưới 3 ô*/
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+.activity-grid{  /*ơ bên dưới ô bên trái, 2 bên phải */
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-column-gap: 1.5rem;
+}
+.activity-card,
+.summary-card,
+.bday-card{ /*3 ô nhỏ*/
+    background: #fff;
+    border-radius: 10px;
+    padding: 0rem;
+}
+.activity-card h3{
+    /*thẻ h3*/
+    color: var(--text-gray);
+    margin:  1rem;
+}
+.activity-card table{
+    /*bảng*/
+    width: 100%;
+    border-collapse: collapse; /*khoảng trống các đường viền bị loại bỏ*/  
+}
+.activity-card thead{
+    /*Tiêu đề của cột*/
+    background: #efefef;
+    text-align: left;
+}
+th, td{
+    /*Tiêu đề của cột, dòng*/
+   font-size: 0.9rem;
+   padding: 1rem 0.5rem;
+   color: var(--color-dark);
+}
+td{
+    font-size: .8rem;
+}
+tbody tr:nth-child(even){
+    /*Lựa chọn cột chẵn*/
+    background:#f9fafc; /*Màu khác với màu cột*/
+}
+.badge{
+    /*Success*/
+    padding: .3rem 1rem;
+    border-radius: 20px;
+    color: var(--main-color);
+    font-weight: 700;
+    font-size: .7rem;
+}
+.badge.success{
+    background:#DEF7EC;
+}
+.badge.warning{
+    background:#f0f6b2;
+    color: orange;
+}
+.td-team{
+    /*3 ảnh chung*/
+    display: flex;
+    align-items: center;
+}
+.img-1,
+.img-2,
+.img-3 {
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
+    margin-left: -15px;
+    border: 3px solid #efefef;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.img-1{
+    background-image: url(Image1.jpg);
+}
+.img-2{
+    background-image: url(Image1.jpg);
+}
+.img-3{
+    background-image: url(Image1.jpg);
+}
+.summary-card{
+    /*bảng nhỏ bên phải*/
+    margin-bottom: 1.5rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+.smmnary-single{
+    padding: 0.5rem 1rem;
+    display: flex; /*icon và 2 dòng chữ ngang hàng nhau*/
+    align-items: center;
+}
+.smmnary-single span{
+    /*icon*/
+    font-size: 2rem;
+    color: #777;
+    padding-right: 1rem;
+}
+.smmnary-single h5{
+    color: var(--main-color);
+    font-size: 1.1rem;
+    margin-bottom: 0rem !important; /*Không quan tâm css định nghĩa sau*/
+}
+.smmnary-single small{
+    font-weight: 700;
+    color: var(--text-gray);
+}
+.bday-flex{
+    display: flex;
+    align-items: center;
+    margin-bottom: .3rem;
+}
+.bday-card{
+    padding: 1rem;
+}
+.bday-img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border: 3px solid #efefef;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(Image1.jpg);
+    padding-right: 0.7rem;
+}
+.text-center{
+    text-align: center;
+}
+.text-center button{
+    background: var(--main-color);
+    color: #fff;
+    border: 1px solid var(--main-color);
+    border-radius: 4px;
+    padding: .4rem;
+}
+
+.table-responsive{
+    overflow-x: auto;
+}
+@media only screen and (max-width: 1200px){
+    .sidebar{
+        width: 60px;
+        z-index: 150;
+    }
+    .sidebar .sidebar-header h3 span,
+    .sidebar li span:last-child {
+        display: none;
+    }
+    .sidebar .sidebar-header,
+    .sidebar li {
+        display: flex;
+        justify-content: center;
+    }
+    .main-content{ 
+        margin-left: 60px; /*phần main kéo theo*/
+    }
+    .main-content header{
+       left: 60px;  /*Phần thanh tìm kiếm*/
+       width: calc(100% - 60px);
+   }
+   #sidebar-toggle:checked ~ .sidebar{
+       width: 240px;
+   }
+   #sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span,
+   #sidebar-toggle:checked ~ .sidebar li span:last-child {
+       display: inline;
+   }
+   #sidebar-toggle:checked ~ .sidebar .sidebar-header {
+       display: flex;
+       justify-content: space-between;
+   }
+   #sidebar-toggle:checked ~ .sidebar li {
+       display: block;
+   }
+   #sidebar-toggle:checked ~ .main-content{ 
+       margin-left: 60px; /*phần main kéo theo*/
+   }
+   #sidebar-toggle:checked ~ .main-content header{
+       left: 60px;  /*Phần thanh tìm kiếm*/
+   }
+}
+@media only screen and (max-width: 860px){
+   .dash-cards{
+       grid-template-columns: repeat(2,1fr);
+   }
+   .card-single{
+       margin-bottom: 1rem;
+   }
+   .activity-grid{
+       display: block;
+   }
+   .summary{
+       margin-top: 1.5rem;
+   }
+   }
+@media only screen and (max-width: 600px) {
+   .dash-cards{
+       grid-template-columns: 100%;
+   }
+}
+@media only screen and (max-width: 450px){
+   main{
+       padding-left: 1rem;
+       padding-right: 1rem;
+   }
+}
